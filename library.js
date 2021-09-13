@@ -1,33 +1,41 @@
 
+// let myLibrary = [
+//     { new Book()
+//         title: "Snømannen",
+//         author: "Jo Nesbø",
+//         pages:  223,
+//         read: false
+//     },
+//     {
+//         title: "Rødstrupe",
+//         author: "Jo Nesbø",
+//         pages:  423,
+//         read: true
+//     },
+
+// {
+//         title: "Berlinerpopplene",
+//         author: "Anne B. Ragde",
+//         pages:  364,
+//         read: false
+//     },
+
+// {
+//         title: "Lord of the Rings",
+//         author: "J. R. R. Tolkien",
+//         pages:  754,
+//         read: true
+//     },
+
+// ];
+
 let myLibrary = [
-    {
-        title: "Snømannen",
-        author: "Jo Nesbø",
-        pages:  223,
-        read: false
-    },
-    {
-        title: "Rødstrupe",
-        author: "Jo Nesbø",
-        pages:  423,
-        read: true
-    },
-
-{
-        title: "Berlinerpopplene",
-        author: "Anne B. Ragde",
-        pages:  364,
-        read: false
-    },
-
-{
-        title: "Lord of the Rings",
-        author: "J. R. R. Tolkien",
-        pages:  754,
-        read: true
-    },
-
-];
+    new Book("Sømannen", "Jo Nesbø", 251, false),
+    new Book("Rødstrupe", "Jo Nesbø", 492, true),
+    new Book("Berlinerpopplene", "Anne B. Ragde", 379, true),
+    new Book("Lord of the Rings", "J. R. R. Tolkien", 150, true),
+    new Book("Donald Duck", "Don Rosa", 1211, true)
+] 
 
 function Book(title, author, pages, read) {
     this.title = title,
@@ -43,6 +51,17 @@ function randomColor() {
 function addBookToLibrary(book) {
     myLibrary.push(book)
 }
+
+Book.prototype.toggleRead = function() {
+    this.read = !this.read
+}
+
+function refreshID() {
+    document.querySelectorAll(".card").forEach((div, i) => {
+        div.setAttribute("delete-id", i )
+    })
+}
+
 const body = document.querySelector("body")
 const container = document.querySelector(".container")
 
@@ -68,7 +87,7 @@ function createBookCard(titleBook, authorBook, pagesBook, readBook) {
     const delBtn = document.createElement("div")
     delBtn.id = "delBtn"
     delBtn.textContent = "x"
-    delBtn.setAttribute("delete-id", myLibrary.findIndex(book => book.title == titleBook)) 
+    div.setAttribute("delete-id", myLibrary.findIndex(book => book.title == titleBook)) 
     topDiv.appendChild(delBtn)
     
     const readBtn = document.createElement("div")
@@ -93,17 +112,25 @@ function createBookCard(titleBook, authorBook, pagesBook, readBook) {
 
     //delete book
     delBtn.addEventListener("click", e => {
-        let index = e.target.attributes["delete-id"].value
+        console.log(e.target.parentElement.parentElement.attributes["delete-id"].value)
+        let index = e.target.parentElement.parentElement.attributes["delete-id"].value
         myLibrary.splice(index, 1)
+        
         e.target.parentElement.parentElement.remove()
+        console.log(e.target.parentElement.parentElement)
+        let leftOverDivs = e.target.parentElement.parentElement
+        console.log(leftOverDivs)
+        refreshID()
         
         })
 
     readBtn.addEventListener("click", (e) => {
-        let title = e.target.parentElement.parentElement.childNodes[1].textContent
-        let index = myLibrary.findIndex(book => book.title === title)
-        myLibrary[index].read = !myLibrary[index].read
-        readBtn.textContent = myLibrary[index].read ? "Read" : "Not Read"
+        // let title = e.target.parentElement.parentElement.childNodes[1].textContent
+        // let index = myLibrary.findIndex(book => book.title === title)
+        // myLibrary[index].read = !myLibrary[index].read
+        // readBtn.textContent = myLibrary[index].read ? "Read" : "Not Read"
+        console.log(e.target)
+
     })
 
 
@@ -134,10 +161,11 @@ submit.addEventListener("click", e => {
             let title = form[0].value
             let author = form[1].value
             let pages =  form[2].value
-            let read =  form[3].checked
-            let book = new Book(title, author, pages, read)
+            let reada =  form[3].checked
+            let book = new Book(title, author, pages, reada)
             addBookToLibrary(book)
             createBookCard(book.title, book.author, book.pages, book.read)
+            refreshID()
             
             //createBookCard(book.title, book.author, book.pages, book.read)
         })
