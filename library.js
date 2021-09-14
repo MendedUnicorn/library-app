@@ -110,7 +110,7 @@ function createBookCard(titleBook, authorBook, pagesBook, readBook) {
     pages.innerText = pagesBook + " pages"
     const read = document.createElement("h4")
     read.classList.add("read")
-    read.innerText = readBook ? "Book has been read" : "Book has not been read"
+    read.innerText = readBook ? "Book is: read" : "Book is: Not read"
 
     const topDiv = document.createElement("div")
     topDiv.id = "topDiv"
@@ -137,11 +137,9 @@ function createBookCard(titleBook, authorBook, pagesBook, readBook) {
         console.log(e.target.parentElement.parentElement.attributes["delete-id"].value)
         let index = e.target.parentElement.parentElement.attributes["delete-id"].value
         myLibrary.splice(index, 1)
-        
+        setLibrary()
         e.target.parentElement.parentElement.remove()
-        console.log(e.target.parentElement.parentElement)
         let leftOverDivs = e.target.parentElement.parentElement
-        console.log(leftOverDivs)
         refreshID()
         
         })
@@ -151,6 +149,7 @@ function createBookCard(titleBook, authorBook, pagesBook, readBook) {
         let index = e.target.parentElement.parentElement.attributes["delete-id"].value
         // myLibrary[index].read = !myLibrary[index].read
         myLibrary[index].toggleRead();
+        read.innerText  =  `Book is:  ${myLibrary[index].read ? "Read" : "Not Read"}`
         setLibrary()
         readBtn.textContent = myLibrary[index].read ? "Read" : "Not Read"
         

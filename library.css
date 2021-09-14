@@ -9,7 +9,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: rgb(244, 251, 252);
+    background: rgb(101, 143, 150);
 }
 
 
@@ -19,9 +19,12 @@ body {
     flex-wrap: wrap;
     overflow: auto ;
     width: 90vw;
-    border: 1px solid black;
+    border: 0px solid black;
+    border-radius: 5px;
     height: 50vh;
     justify-content: center;
+    background-color: rgba(77, 96, 109, 0.61);
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
 }
 h1 {
     margin: 20px;
@@ -75,9 +78,9 @@ form {
     display:flex;
     flex-direction: column;
     margin: 20px;
-    border: 1px solid lightcoral;
     padding: 20px;
     border-radius: 10px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
 
 }
 
@@ -118,7 +121,10 @@ input {
     width: 50%;
     color: white;
     font-family: 'Courier New', Courier, monospace;
+    background-color: rgba(230, 68, 68, 0.493)   ;
+    border-radius: 5px;
 }
+
 #readBtn:hover {
     background-color: rgba(129, 129, 129, 0.363);
     opacity: 0.8;
@@ -132,7 +138,8 @@ input {
 }
 
 #form-btn {
-    margin: 30px;
+    margin-top: 30px;
+    margig-bottom: 10px
     border: none;
     background-color: rgb(109, 109, 255);
     padding: 10px 20px ;
@@ -162,4 +169,10 @@ input[type="submit"]:hover {
     opacity: 0.8;
     cursor: pointer;
 
+}
+
+input {
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
 }
