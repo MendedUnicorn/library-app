@@ -28,14 +28,45 @@
 //     },
 
 // ];
-
-let myLibrary = [
+// localStorage.clear()
+let myLibrary =   [
     new Book("Sømannen", "Jo Nesbø", 251, false),
     new Book("Rødstrupe", "Jo Nesbø", 492, true),
     new Book("Berlinerpopplene", "Anne B. Ragde", 379, true),
     new Book("Lord of the Rings", "J. R. R. Tolkien", 150, true),
     new Book("Donald Duck", "Don Rosa", 1211, true)
-] 
+]
+ 
+function setLibrary() {
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary))
+} 
+function getLibrary(){
+    let loadedLibrary = JSON.parse(localStorage.getItem("myLibrary"))
+    loadedLibrary.forEach(book => book.__proto__ = new Book())
+    return loadedLibrary
+}
+
+
+if(!localStorage.getItem("myLibrary")) { 
+    
+    setLibrary()
+    console.log("ppop")
+} else {
+    console.log("YEY")
+    myLibrary = getLibrary()
+}
+
+
+// let myLibrary = [
+//     new Book("Sømannen", "Jo Nesbø", 251, false),
+//     new Book("Rødstrupe", "Jo Nesbø", 492, true),
+//     new Book("Berlinerpopplene", "Anne B. Ragde", 379, true),
+//     new Book("Lord of the Rings", "J. R. R. Tolkien", 150, true),
+//     new Book("Donald Duck", "Don Rosa", 1211, true)
+// ] 
+// console.log(localStorage.setItem("myLibrary", myLibrary))
+// console.log(localStorage)
+// console.dir(localStorage.getItem("myLibrary"))
 
 function Book(title, author, pages, read) {
     this.title = title,
@@ -101,15 +132,6 @@ function createBookCard(titleBook, authorBook, pagesBook, readBook) {
     
     div.append(topDiv)
 
-
-    //delete btn
-    
-
-    
-
-
-
-
     //delete book
     delBtn.addEventListener("click", e => {
         console.log(e.target.parentElement.parentElement.attributes["delete-id"].value)
@@ -123,13 +145,15 @@ function createBookCard(titleBook, authorBook, pagesBook, readBook) {
         refreshID()
         
         })
-
+    //togle read
     readBtn.addEventListener("click", (e) => {
         // let title = e.target.parentElement.parentElement.childNodes[1].textContent
-        // let index = myLibrary.findIndex(book => book.title === title)
+        let index = e.target.parentElement.parentElement.attributes["delete-id"].value
         // myLibrary[index].read = !myLibrary[index].read
-        // readBtn.textContent = myLibrary[index].read ? "Read" : "Not Read"
-        console.log(e.target)
+        myLibrary[index].toggleRead();
+        setLibrary()
+        readBtn.textContent = myLibrary[index].read ? "Read" : "Not Read"
+        
 
     })
 
@@ -151,12 +175,20 @@ function displayAllBooks() {
 }
 
 const formBtn = document.querySelector("#form-btn")
-const form = document.createElement("form")
-form.classList.add("form")
+const form = document.querySelector("form")
+form.style.display = "none"
+formBtn.addEventListener("click", ()=> {
+    form.style.display == "none" ? form.style.display = "block" : form.style.display = "none"
+})
+
+
+
+
 
 const submit = document.querySelector("input[type='submit']")
 submit.addEventListener("click", e => {
             e.preventDefault()
+
             let form = e.target.parentElement
             let title = form[0].value
             let author = form[1].value
@@ -164,6 +196,7 @@ submit.addEventListener("click", e => {
             let reada =  form[3].checked
             let book = new Book(title, author, pages, reada)
             addBookToLibrary(book)
+            setLibrary()
             createBookCard(book.title, book.author, book.pages, book.read)
             refreshID()
             
