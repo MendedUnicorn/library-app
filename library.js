@@ -29,14 +29,65 @@
 
 // ];
 // localStorage.clear()
-let myLibrary =   [
+// let myLibrary =   [
+//     new Book("Sømannen", "Jo Nesbø", 251, false),
+//     new Book("Rødstrupe", "Jo Nesbø", 492, true),
+//     new Book("Berlinerpopplene", "Anne B. Ragde", 379, true),
+//     new Book("Lord of the Rings", "J. R. R. Tolkien", 150, true),
+//     new Book("Donald Duck", "Don Rosa", 1211, true)
+// ]
+ 
+
+
+
+// let myLibrary = [
+//     new Book("Sømannen", "Jo Nesbø", 251, false),
+//     new Book("Rødstrupe", "Jo Nesbø", 492, true),
+//     new Book("Berlinerpopplene", "Anne B. Ragde", 379, true),
+//     new Book("Lord of the Rings", "J. R. R. Tolkien", 150, true),
+//     new Book("Donald Duck", "Don Rosa", 1211, true)
+// ] 
+// console.log(localStorage.setItem("myLibrary", myLibrary))
+// console.log(localStorage)
+// console.dir(localStorage.getItem("myLibrary"))
+
+class Library {
+    constructor(...books) {
+        this.books = books
+    }
+    logBooks() {
+        this.books.forEach(boook => console.log(book))
+    }
+    addBookToLibrary(book) {
+        this.books.push(book)
+    }
+    refreshID() {
+        document.querySelectorAll(".card").forEach((div, i) => {
+            div.setAttribute("delete-id", i )
+        })
+    }
+}
+
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.read = read
+    }
+    toggleRead() {
+        this.read  = !this.read
+    }
+}
+
+let myLibrary = new Library([
     new Book("Sømannen", "Jo Nesbø", 251, false),
     new Book("Rødstrupe", "Jo Nesbø", 492, true),
     new Book("Berlinerpopplene", "Anne B. Ragde", 379, true),
     new Book("Lord of the Rings", "J. R. R. Tolkien", 150, true),
     new Book("Donald Duck", "Don Rosa", 1211, true)
-]
- 
+] )
+
 function setLibrary() {
     localStorage.setItem("myLibrary", JSON.stringify(myLibrary))
 } 
@@ -57,41 +108,17 @@ if(!localStorage.getItem("myLibrary")) {
 }
 
 
-// let myLibrary = [
-//     new Book("Sømannen", "Jo Nesbø", 251, false),
-//     new Book("Rødstrupe", "Jo Nesbø", 492, true),
-//     new Book("Berlinerpopplene", "Anne B. Ragde", 379, true),
-//     new Book("Lord of the Rings", "J. R. R. Tolkien", 150, true),
-//     new Book("Donald Duck", "Don Rosa", 1211, true)
-// ] 
-// console.log(localStorage.setItem("myLibrary", myLibrary))
-// console.log(localStorage)
-// console.dir(localStorage.getItem("myLibrary"))
 
-function Book(title, author, pages, read) {
-    this.title = title,
-    this.author = author,
-    this.pages = pages,
-    this.read = read
-}
+
+// class UI {
+//     constructor()
+// }
+
 function randomColor() {
     return randomNumber = Math.floor(Math.random() * 255)
     
 }
 
-function addBookToLibrary(book) {
-    myLibrary.push(book)
-}
-
-Book.prototype.toggleRead = function() {
-    this.read = !this.read
-}
-
-function refreshID() {
-    document.querySelectorAll(".card").forEach((div, i) => {
-        div.setAttribute("delete-id", i )
-    })
-}
 
 const body = document.querySelector("body")
 const container = document.querySelector(".container")
