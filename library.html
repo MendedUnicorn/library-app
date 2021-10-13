@@ -17,14 +17,15 @@
 
 <form action="">
     <label for="title">Book Title</label>
-    <input type="text" id="title">
+    <input type="text" id="title" required minlength="2">
     <label for="author">Author</label>
-    <input type="text" name="author" id="author">
+    <input type="text" name="author" id="author" required minlength="2">
     <label for="pages">Number of pages</label>
-    <input type="number" name="pages" id="pages">
+    <input type="number" name="pages" id="pages" required min="1">
     <label for="read">Have you read it?</label>
     <input type="checkbox" name="read" id="read">
-    <input type="submit" value="submit">
+    <button type="submit">Submit</button>
+    <!-- <input type="submit" value="submit"> -->
 </form>
 
 <script src="library.js"></script>

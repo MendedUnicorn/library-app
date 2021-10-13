@@ -174,21 +174,34 @@ function displayAllBooks() {
 }
 
 const formBtn = document.querySelector("#form-btn")
-const form = document.querySelector("form")
-form.style.display = "none"
+const formEl = document.querySelector("form")
+formEl.style.display = "none"
 formBtn.addEventListener("click", ()=> {
-    form.style.display == "none" ? form.style.display = "block" : form.style.display = "none"
+    formEl.style.display == "none" ? formEl.style.display = "block" : formEl.style.display = "none"
 })
 
 
 
 
 
-const submit = document.querySelector("input[type='submit']")
+const submit = document.querySelector("button[type='submit']")
+const inputTitle = document.querySelector("#title")
+const inputAuthor = document.querySelector("#author")
 submit.addEventListener("click", e => {
-            e.preventDefault()
+    if(inputTitle.validity.tooShort) {inputTitle.setCustomValidity("Come on it needs to be longer dude")}
+    else {inputTitle.setCustomValidity("")}
+    
+    if(inputAuthor.validity.tooShort) {console.log("object"); inputAuthor.setCustomValidity("The Authors name is longer than that buddy!")}
+    else {console.log("fwefw"); inputAuthor.setCustomValidity("")}
+})
 
-            let form = e.target.parentElement
+formEl.addEventListener("submit", (e) => {
+            e.preventDefault()
+            
+            
+            
+            let form = e.target
+            console.log(e)
             let title = form[0].value
             let author = form[1].value
             let pages =  form[2].value
@@ -200,7 +213,9 @@ submit.addEventListener("click", e => {
             refreshID()
             
             //createBookCard(book.title, book.author, book.pages, book.read)
-        })
+})
+
+
 
 
 // Stupid me thought i had to generate form using JS. New approach is to make in HTML and hide it. Bring it out with JKS
