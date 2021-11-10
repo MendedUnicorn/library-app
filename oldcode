@@ -1,0 +1,47 @@
+// Stupid me thought i had to generate form using JS. New approach is to make in HTML and hide it. Bring it out with JKS
+// function createForm() {
+//     const titleLabel = document.createElement("label")
+//     titleLabel.setAttribute("for", "title")
+//     titleLabel.innerText = "Title"
+//     const titleInput  = document.createElement("input")
+//     titleInput.setAttribute("type", "text")
+//     titleInput.id = "title"
+
+//     const authorLabel = document.createElement("label")
+//     authorLabel.setAttribute("for", "author")
+//     authorLabel.innerText = "Author"
+//     const authorInput  = document.createElement("input")
+//     authorInput.setAttribute("type", "text")
+//     authorInput.id = "author"
+
+//     const pagesLabel = document.createElement("label")
+//     pagesLabel.setAttribute("for", "author")
+//     pagesLabel.innerText = "Number of Pages"
+//     const pagesInput  = document.createElement("input")
+//     pagesInput.setAttribute("type", "number")
+//     pagesInput.id = "pages"
+
+//     const readLabel = document.createElement("label")
+//     readLabel.setAttribute("for", "author")
+//     readLabel.innerText = "Have you read the book?"
+//     const readInput  = document.createElement("input")
+//     readInput.setAttribute("type", "checkbox")
+//     readInput.id = "read"
+
+//     const submit = document.createElement("input")
+//     submit.setAttribute("type", "submit")
+//     submit.setAttribute("value", "Submit")
+
+//     form.append(titleLabel, titleInput, authorLabel, authorInput, pagesLabel, pagesInput, readLabel, readInput)
+//     form.append(submit)
+//     body.append(form)
+
+//     submit.addEventListener("click", e => {
+//         e.preventDefault()
+//         let book = new Book(titleInput.value, authorInput.value, pagesInput.value, readInput.checked)
+//         addBookToLibrary(book)
+
+//         createBookCard(book.title, book.author, book.pages, book.read)
+//     })
+
+// }
